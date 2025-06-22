@@ -1,0 +1,232 @@
+body, html { margin:0; 
+padding:0; 
+height:100%; 
+font-family:"Helvetica Neue",sans-serif; 
+}
+.container { display:flex; 
+height:100vh; 
+overflow-y:auto; 
+}
+.sidebar { width:auto; 
+background:#222; 
+color:#fff; 
+position:sticky; 
+top:0; 
+padding:2rem; 
+}
+.sidebar ul { list-style:none; 
+padding:0; 
+}
+.sidebar li { margin:1.5rem 0; 
+cursor:pointer; 
+}
+.sidebar li.active { color:#4caf50; 
+}
+.main { width:70vw; 
+position:relative; 
+}
+.detail-container { position:sticky; 
+top:20vh; 
+padding:2rem; 
+}
+.detail {
+  position: relative;
+}
+.icon-buttons {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.icon-buttons img {
+  width: 32px;
+  height: 32px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.icon-buttons img:hover {
+  opacity: 1;
+}
+
+.detail.show { 
+    opacity:1; 
+    transform: translateX(0); 
+}
+.keywords {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.1rem;
+}
+.abstract {
+  font-size: 1.1rem;
+  color: #0e4399;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+.detail_paper {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.banger {
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+}
+.meta {
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0.4rem 0;
+}
+.bibtex {
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+.authors { font-size: 0.9rem; color: #444; margin-bottom: 0.5rem; }
+.metadata dt { font-weight: bold; }
+.metadata dd { margin: 0 0 0.8rem 1rem; color: #555; }
+.links ul { list-style: none; padding: 0; }
+.links li { margin-bottom: 0.5rem; }
+/* 段落與版塊 */
+.detail h2 { margin-bottom: 1rem; font-size: 1.8rem; }
+.detail section { margin-bottom: 1.5rem; }
+
+/* 摘要 */
+.summary p { line-height: 1.6; color: #333; }
+
+/* Metadata */
+.metadata dt { font-weight: bold; margin-top: 0.5rem; }
+.metadata dd { margin: 0 0 0.5rem 1rem; color: #555; }
+
+/* 右上角按鈕 */
+.links { display: flex; gap: 0.75rem; }
+.links.fixed-bottom {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 2rem;
+  z-index: 2000;
+  background: rgba(255,255,255,0.95);
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  padding: 0.3rem 0.6rem;
+}
+.icon { width: 28px; height: 28px; opacity: 0.7; transition: opacity 0.2s; }
+.icon:hover { opacity: 1; }
+
+/* Modal */
+.bibtex-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+.modal-content { background: #fff; padding: 1.5rem; border-radius: 6px; max-width: 600px; }
+.close-btn { position: absolute; top:0.5rem; right:1rem; font-size:1.2rem; cursor:pointer; }
+.bibtex { font-family: monospace; font-size: 0.85rem; overflow-x: auto; }
+
+/* Modal 樣式 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* gallery 輪播 */
+.gallery {
+  position: relative;
+  width: auto;
+  height: 250px;
+  margin: 0 auto;
+}
+.gallery .pfp {
+  position: absolute;
+  left: 0; top: 0;
+  opacity: 0;
+  transition: opacity 0.7s;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.gallery .pfp.active {
+  opacity: 1;
+  z-index: 1;
+}
+/* pfp 單張 fallback */
+.pfp {
+  width: auto;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.logo { width: 40px; height: 40px; opacity: 1; transition: opacity 0.2s; }
+.logo:hover { opacity: 0.4; }
+
+
+.intro-json {
+  background-color: #1e1e1e;     /* VSCode Dark background */
+  color: #d4d4d4;                /* Default text */
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  overflow-x: auto;
+}
+/* JSON 屬性名稱顏色 */
+.intro-json .json-key {
+  color: #9cdcfe;
+}
+/* JSON 字串顏色 */
+.intro-json .json-string {
+  color: #ce9178;
+}
+
+/* Publications 區塊 */
+#pub-output .pub-item {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 6px;
+}
+#pub-output .pub-item h3 {
+  margin: 0 0 0.5rem;
+  color: #007acc;
+  font-size: 1.2rem;
+}
+#pub-output .pub-item p {
+  margin: 0.3rem 0;
+  color: #333;
+}
+#pub-output .pub-item a {
+  color: #0066cc;
+  text-decoration: none;
+}
