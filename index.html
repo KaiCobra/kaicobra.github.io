@@ -12,22 +12,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo" style="display:flex;align-items:center;margin-right:0rem;"><img src="/icons/image.png" alt="Logo" style="height:36px;"></a>
+    <ul><!-- 導覽列，動畫bar會自動插入 -->
+      <li data-detail="details/intro.html">About Me</li>
+      <li data-detail="details/research.html">Research</li>
+      <li data-detail="details/publications.html">Publications</li>
+      <!-- 各篇論文列表 -->
+      <li data-detail="details/pub_syn3dtxt.html">Syn3DTxt (CVPR 2025)</li>
+      <li data-detail="details/future_paper.html">FuturePaper (Pending)</li>
+      <!-- 新增論文只要再加 li 即可 -->
+    </ul>
+  </nav>
   <div class="container">
-    <!-- 左側：研究列表 -->
-    <nav class="sidebar">
-      <ul>
-
-        <li data-detail="details/intro.html">About Me</li>
-        <li data-detail="details/research.html">Research</li>
-        <li data-detail="details/publications.html">Publications</li>
-        <!-- 各篇論文列表 -->
-        <li data-detail="details/pub_syn3dtxt.html">Syn3DTxt (2025)</li>
-        <li data-detail="details/future_paper.html">FuturePaper (Pending)</li>
-        <!-- 新增論文只要再加 li 即可 -->
-      </ul>
-    </nav>
-
-    <!-- 右側：detail 顯示區，sticky 固定位置 -->
     <div class="main">
       <div class="detail-container"></div>
     </div>
