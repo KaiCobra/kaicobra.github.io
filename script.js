@@ -34,6 +34,75 @@ items.forEach(item => {
   });
 });
 
+// ====== 側欄功能區 ======
+function updateMyTime() {
+  const el = document.getElementById('my-time');
+  if (!el) return;
+  function pad(n) { return n<10?'0'+n:n; }
+  function update() {
+    const now = new Date();
+    el.textContent = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+  }
+  update();
+  setInterval(update, 1000);
+}
+
+function setRandomGif() {
+  const el = document.getElementById('random-gif');
+  if (!el) return;
+  // 若無法列目錄，請手動維護檔名
+  const gifs = [
+    '/random_gifs/cat (1).gif',
+    '/random_gifs/cat (1).jpg',
+    '/random_gifs/cat (2).gif',
+    '/random_gifs/cat (2).jpg',
+    '/random_gifs/cat (3).gif',
+    '/random_gifs/cat (3).jpg',
+    '/random_gifs/cat (4).gif',
+    '/random_gifs/cat (5).gif',
+  ];
+  const idx = Math.floor(Math.random()*gifs.length);
+  el.src = gifs[idx];
+}
+
+function updateUniqueVisitors() {
+  const el = document.getElementById('unique-visitors');
+  if (!el) return;
+  let total = localStorage.getItem('unique_visitors');
+  if (!total) {
+    total = Math.floor(1000 + Math.random()*9000); // 模擬初始人數
+    localStorage.setItem('unique_visitors', total);
+  }
+  el.textContent = total;
+}
+
+function setupNewsList() {
+  const el = document.getElementById('news-list');
+  if (!el) return;
+  const news = [
+    'Welcome to my site!',
+    '2025/6/24 新增側欄功能',
+    '留言區已支援 GitHub giscus',
+    'Gallery 支援 Glide.js 輪播'
+  ];
+  el.innerHTML = news.map(n=>`<li>${n}</li>`).join('');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  // 動態載入側欄內容
+  document.querySelectorAll('.side-card[data-src]').forEach(card => {
+    const url = card.getAttribute('data-src');
+    fetch(url).then(r => r.text()).then(html => {
+      card.innerHTML = html;
+      // 根據 data-src 決定是否執行對應功能
+      if(url.includes('time')) updateMyTime();
+      if(url.includes('gif')) setRandomGif();
+      if(url.includes('visitors')) updateUniqueVisitors();
+      if(url.includes('news')) setupNewsList();
+    });
+  });
+});
+
 // Citation Modal
 function setupCitationModal() {
   const btnCit = document.getElementById('btn-citation');
